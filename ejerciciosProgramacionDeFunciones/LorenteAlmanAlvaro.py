@@ -3,15 +3,15 @@ import math
 # ejercicio 1
 def area_rectangulo(base, altura):
     return base * altura
-print((area_rectangulo(15, 10)))
+print(f"Ejercicio 1. Area rectángulo: {(area_rectangulo(15, 10))}")
 
 #ejercicio 2
 from math import pi
-
 def area_circulo(radio):
     return pi * radio**2
+##print(f"\nEjercicio 2. Area círculo: {(area_circulo(5))}")
+print(f"\nEjercicio 2. Área círculo: {round(area_circulo(5), 2)}") ## redondear a dos decimales
 
-(area_circulo(5))
 
 # ejercicio 3
 def relacion(a, b):
@@ -20,23 +20,23 @@ def relacion(a, b):
         elif a < b:
             return -1
         return 0
-print(f"Resultado: {relacion(5, 10), relacion(10, 5), relacion(5, 5)}")
+print(f"\nEjercicio 3. Resultado: {relacion(5, 10), relacion(10, 5), relacion(5, 5)}")
 
 ## ejercicio 4
 def intermedio(num1, num2):
     return (num1 + num2) / 2
+print(f"\nEjercicio 4. Punto intermedio: {intermedio(-12, 24)}")
 
-print (intermedio(-12, 24))
 
 ## ejercicio 5
 def recortar(num, minimo, maximo):
     return max(min(num, maximo), minimo)
+print(f"\nEjercicio 5. {recortar(15, 0, 10)}")
 
-print (recortar(-2, 0, 10))
+
 
 ## ejercicio 6
-numeros = [-12, 84, 13, 20, -33, 101, 9]
-
+numeros = [6, 5, 2, 1, 7]
 def separar(*args):
     lista = sorted(args)
     pares = []
@@ -50,10 +50,5 @@ def separar(*args):
     return pares, impares
 
 pares, impares = separar(*numeros)
-print(pares)   # valdría [2, 6]
-print(impares)  # valdría [1, 5, 7]
-
-
-
-
-
+print(f"\nEjercicio 6. Número pares de la cadena: {(pares)}")
+print(f"\t\tNúmeros impares de la cadena: {(impares)}")
