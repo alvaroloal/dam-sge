@@ -260,4 +260,86 @@ colores
 colores['amarillo']
 
 ##Mutabilidad
+colores['verde'] = 'green'
+colores
+##se puede sobrescribir valor
+colores['amarillo'] = 'white'
+colores
 
+##Función del()
+del(colores['amarillo'])
+colores
+
+numeros = {10:'diez',20:'veinte'}
+numeros[10]
+
+edades = {'Hector':27,'Juan':45,'Maria':34}
+edades['Hector']+=1
+edades
+
+edades['Juan'] + edades['Maria']
+
+
+##letra secuencial
+edades = {'Hector':27,'Juan':45,'Maria':34}
+
+for edad in edades:
+    print(edad)
+    
+for clave in edades:
+    print(edades[clave])
+    
+for clave in edades:
+    print(clave,edades[clave])
+    
+for clave, valor in edades.items():
+    print(clave, valor)
+    
+##lista de diccionarios
+personajes = []
+
+gandalf = {'Nombre':'Gandalf','Clase':'Mago','Raza':'Humano'}
+legolas = {'Nombre':'Legolas','Clase':'Arquero','Raza':'Elfo'}
+gimli = {'Nombre':'Gimli','Clase':'Guerrero','Raza':'Enano'}
+
+personajes.append(gandalf)
+personajes.append(legolas)
+personajes.append(gimli)
+
+print(personajes)
+
+for pesonaje in personajes:
+    print(pesonaje['Nombre'], pesonaje['Clase'], pesonaje['Raza'])
+
+
+##Pilas
+pila = [3,4,5]
+pila.append(6)
+pila.append(7)
+print(pila)
+##sacar elementos
+print(pila.pop())
+print(pila)
+
+numero = pila.pop()
+print(numero)
+
+##Colas
+##Debemos importar la colección deque manualmente para crear una cola:
+from collections import deque
+cola = deque()
+print(cola)
+
+cola = deque(['Hector','Juan','Miguel'])
+print(cola)
+
+cola.append('Maria')
+cola.append('Arnaldo')
+print(cola)
+
+print(cola.popleft())
+print(cola)
+
+persona = cola.popleft()
+print(persona)
+print(cola)
