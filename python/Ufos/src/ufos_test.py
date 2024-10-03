@@ -1,12 +1,19 @@
 from ufos import *
 
 # Test de la función lee_avistamientos
-
+lee_avistamientos('ruta_al_fichero.csv')
 
 #Test de la función duracion_total
+total_duracion_estado = duracion_total(avistamientos, 'CA')  # ej:California
+print(f'Duración total de avistamientos en CA: {total_duracion_estado} segundos')
 
     
 # Test de la función comentario_mas_largo
+avistamiento_largo = comentario_mas_largo(avistamientos, 2015, 'ufo')
+if avistamiento_largo:
+    print(f'El avistamiento con el comentario más largo de 2015 incluyendo la palabra "ufo" es:\n{avistamiento_largo}')
+else:
+    print('No se encontraron avistamientos que cumplan con los criterios.')
 
 
 
@@ -25,18 +32,12 @@ from ufos import *
 
 
 
-
-
-
-
-
-# =============================================================================
 # # Test de la función formas_estados
-# conjunto_estados = {'in', 'nm', 'pa', 'wa'}
-# print("Número de formas distintas observadas en los estados {}: {}"
+#  conjunto_estados = {'in', 'nm', 'pa', 'wa'}
+#  print("Número de formas distintas observadas en los estados {}: {}"
 #       .format(', '.join(conjunto_estados), formas_estados(avistamientos, conjunto_estados)))
-# print()
-# 
+#  print()
+ 
 # # Test de la función avistamiento_mayor_duracion
 # forma = 'circle'
 # print("Avistamiento de forma \'{}\' de mayor duración: {}"
