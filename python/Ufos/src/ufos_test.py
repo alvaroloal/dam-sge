@@ -1,7 +1,7 @@
 from ufos import *
 
 # Test de la función lee_avistamientos
-lee_avistamientos('ruta_al_fichero.csv')
+avistamientos  = lee_avistamientos('C:\\Users\\alvaro\\proyectos\\dam-sge\\python\\Ufos\\data\\ovnis.csv')
 
 #Test de la función duracion_total
 total_duracion_estado = duracion_total(avistamientos, 'CA')  # ej:California
