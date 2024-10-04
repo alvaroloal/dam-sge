@@ -4,7 +4,8 @@ from math import sqrt
 from collections import namedtuple, Counter, defaultdict
 
 ##creacion de una tupla con nombre para los avistamientos
-# Avistamiento = namedtuple('Avistamiento','fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
+Avistamiento = namedtuple('Avistamiento',
+                          'fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
 
 
 # def lee_avistamientos(fichero):
@@ -25,17 +26,20 @@ from collections import namedtuple, Counter, defaultdict
 #             tupla = Avistamiento(fechahora, ciudad, estado, forma, duracion, comentarios, latitud, longitud)
 #             res.append(tupla)
 #         return res
-    
+
+
+## funcon de lectura que crea una lista de avistamientos 
 # ejercicio 1
 def lee_avistamientos(fichero):
     avistamientos = []
     
-    with open(fichero, mode='r', encoding='utf-8') as file:
-        reader = csv.DictReader(file)
-        
-        for row in reader:
+    with open(fichero, encoding='utf-8') as file:
+        lector = csv.reader(file)
+        next (lector)
+        for row in lector:
             # combina fecha y hora y convertir a objeto datetime
             fecha_hora = datetime.strptime(row['fecha'] + ' ' + row['hora'], '%Y-%m-%d %H:%M')
+            ## fecha_hora, '%m/%d/%Y %H:%M'
             avistamientos.append((
                 fecha_hora,
                 row['ciudad'],
@@ -43,7 +47,7 @@ def lee_avistamientos(fichero):
                 row['forma'],
                 int(row['duracion']),  
                 row['descripcion'],
-                float(row['latitud']),  # convertir latitud a float
+                float(row['latitud']),  # convertir a float
                 float(row['longitud'])   
             ))
 
@@ -53,13 +57,13 @@ def lee_avistamientos(fichero):
     return avistamientos
 
 # ejercicio 2
-def duracion_total(registros, estado):
+def duracion_total(avistamientos, estado):
     total_duracion = 0
     
-    for registro in registros:
+    for r in avistamientos:
         # comprobar si el estado del registro coincide con el estado proporcionado
-        if registro[2].upper() == estado.upper():  # comparar sin importar mayus
-            total_duracion += registro[4]  # sumar la duracion (índice 4 en la tupla registro)
+        if r[2].upper() == estado.upper():  # comparar sin importar mayusc
+            total_duracion += r[4]  # sumar la duracion (índice 4 en la tupla registro)
     
     return total_duracion
 

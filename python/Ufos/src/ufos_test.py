@@ -1,14 +1,17 @@
 from ufos import *
 
-# Test de la función lee_avistamientos
-lee_avistamientos('ruta_al_fichero.csv')
+avistamientos = namedtuple('Avistamiento','fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
 
-#Test de la función duracion_total
+# Test funcion lee_avistamientos
+lee_avistamientos('./data/ovnis.csv')
+
+
+#Test  duracion_total
 total_duracion_estado = duracion_total(avistamientos, 'CA')  # ej:California
 print(f'Duración total de avistamientos en CA: {total_duracion_estado} segundos')
 
     
-# Test de la función comentario_mas_largo
+# Test  comentario_mas_largo
 avistamiento_largo = comentario_mas_largo(avistamientos, 2015, 'ufo')
 if avistamiento_largo:
     print(f'El avistamiento con el comentario más largo de 2015 incluyendo la palabra "ufo" es:\n{avistamiento_largo}')
@@ -22,6 +25,14 @@ else:
 
 
 # Test de la función hora_mas_avistamientos
+
+
+
+
+
+
+
+
 
 
 
