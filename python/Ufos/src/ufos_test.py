@@ -1,6 +1,11 @@
 from ufos import *
 
+<<<<<<< HEAD
 avistamientos = namedtuple('Avistamiento','fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
+=======
+# Test de la función lee_avistamientos
+avistamientos  = lee_avistamientos('C:\\Users\\alvaro\\proyectos\\dam-sge\\python\\Ufos\\data\\ovnis.csv')
+>>>>>>> bd3f341a697ed42793d01ebf02a51a1946a35ceb
 
 # Test funcion lee_avistamientos
 lee_avistamientos('./data/ovnis.csv')
