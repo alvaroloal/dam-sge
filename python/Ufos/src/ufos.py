@@ -16,22 +16,22 @@ class Avistamiento:
         self.latitud = latitud
         self.longitud = longitud
 
-# Función para leer avistamientos desde un archivo CSV
+#  para leer avistamientos desde un archivo CSV
 def lee_avistamientos(fichero):
     avistamientos = []
     
     with open(fichero, mode='r', encoding='utf-8') as archivo:
         lector_csv = csv.reader(archivo)
-        next(lector_csv)  # Saltar la cabecera si existe
+        next(lector_csv)  
         
         for fila in lector_csv:
-            print(fila)  # Debug: Verificar el contenido de cada fila
-            if len(fila) < 8:  # Verificar que la fila tiene suficientes columnas
+            print(fila)  
+            if len(fila) < 8:  
                 print(f"Fila incompleta: {fila}")
                 continue
             
             try:
-                # Ajustar el formato de fecha a 'mes/día/año'
+                # formato de fecha a 'mes/día/año'
                 fechahora = datetime.strptime(fila[0], '%m/%d/%Y %H:%M')
                 ciudad = fila[1]
                 estado = fila[2]
@@ -41,13 +41,13 @@ def lee_avistamientos(fichero):
                 latitud = float(fila[6])
                 longitud = float(fila[7])
                 
-                # Crear una instancia de Avistamiento
+                # crear una instancia de Avistamiento
                 avistamiento = Avistamiento(fechahora, ciudad, estado, forma, duracion, comentarios, latitud, longitud)
                 avistamientos.append(avistamiento)
             except ValueError as e:
                 print(f"Error al procesar fila: {fila}, Error: {e}")
     
-    # Ordenar los avistamientos por fecha y hora
+    # ordenar por fecha y hora
     avistamientos.sort(key=lambda x: x.fechahora)
     
     return avistamientos
@@ -60,7 +60,7 @@ def duracion_total(registros, estado):
             duracion += avistamiento.duracion
     return duracion
 
-# Prueba de la función duracion_total con registros corregidos
+# Prueba de la función duracion_total
 
 
 registros = [
