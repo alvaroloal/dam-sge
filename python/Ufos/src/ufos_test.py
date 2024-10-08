@@ -1,6 +1,5 @@
 from ufos import *
 
-<<<<<<< HEAD
 # Test de la función lee_avistamientos
 resultados = lee_avistamientos('C:/Users/alvaro/proyectos/dam-sge/python/Ufos/data/ovnis.csv')
 print(resultados)
@@ -23,25 +22,6 @@ print(f"Duración total de los avistamientos en wa: {duracion_wa} segundos.")
 # Test de la función comentario_mas_largo
 # Ejemplo para el año 2015 y la palabra 'ufo'
 avistamiento_comentario_largo = comentario_mas_largo(registros, 2015, 'ufo')
-=======
-avistamientos = namedtuple('Avistamiento','fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
-
-# Test funcion lee_avistamientos
-lee_avistamientos('C:\Users\lorente.alalv24_tria\Desktop\dam-sge\python\Ufos\data\ovnis.csv')
-
-
-#Test  duracion_total
-total_duracion_estado = duracion_total(avistamientos, 'CA')  # ej:California
-print(f'Duración total de avistamientos en CA: {total_duracion_estado} segundos')
-
-    
-# Test  comentario_mas_largo
-avistamiento_largo = comentario_mas_largo(avistamientos, 2015, 'ufo')
-if avistamiento_largo:
-    print(f'El avistamiento con el comentario más largo de 2015 incluyendo la palabra "ufo" es:\n{avistamiento_largo}')
-else:
-    print('No se encontraron avistamientos que cumplan con los criterios.')
->>>>>>> d4c7ceee02a8e7675a93e7cf9993dbe857c44926
 
 if avistamiento_comentario_largo:
     print(f"El avistamiento con el comentario más largo de 2015 incluyendo la palabra 'ufo' es:\n{avistamiento_comentario_largo}")
