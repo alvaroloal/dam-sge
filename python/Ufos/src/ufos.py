@@ -5,7 +5,8 @@ from collections import namedtuple, Counter, defaultdict
 import calendar
 
 ##creacion de una tupla con nombre para los avistamientos
-# Avistamiento = namedtuple('Avistamiento','fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
+Avistamiento = namedtuple('Avistamiento',
+                          'fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
 
 
 # def lee_avistamientos(fichero):
@@ -26,7 +27,9 @@ import calendar
 #             tupla = Avistamiento(fechahora, ciudad, estado, forma, duracion, comentarios, latitud, longitud)
 #             res.append(tupla)
 #         return res
-    
+
+
+## funcon de lectura que crea una lista de avistamientos 
 # ejercicio 1
 class Avistamiento:
     def __init__(self, fechahora, ciudad, estado, forma, duracion, comentarios, latitud, longitud):
@@ -47,6 +50,7 @@ class Avistamiento:
 def lee_avistamientos(fichero):
     avistamientos = []
     
+<<<<<<< HEAD
     with open(fichero, mode='r', encoding='utf-8') as archivo:
         lector_csv = csv.reader(archivo)
         
@@ -81,17 +85,46 @@ def lee_avistamientos(fichero):
     
     # Ordenamos la lista de avistamientos por fecha y hora
     avistamientos.sort(key=lambda x: x.fechahora)
+=======
+    with open(fichero, encoding='utf-8') as file:
+        lector = csv.reader(file)
+        next (lector)
+        for row in lector:
+            # combina fecha y hora y convertir a objeto datetime
+            fecha_hora = datetime.strptime(row['fecha'] + ' ' + row['hora'], '%Y-%m-%d %H:%M')
+            ## fecha_hora, '%m/%d/%Y %H:%M'
+            avistamientos.append((
+                fecha_hora,
+                row['ciudad'],
+                row['estado'],
+                row['forma'],
+                int(row['duracion']),  
+                row['descripcion'],
+                float(row['latitud']),  # convertir a float
+                float(row['longitud'])   
+            ))
+
+    # ordenar la lista de tuplas por fecha y hora
+    avistamientos.sort(key=lambda x: x[0])
+>>>>>>> d4c7ceee02a8e7675a93e7cf9993dbe857c44926
     
     return avistamientos
 
 # ejercicio 2
-def duracion_total(registros, estado):
+def duracion_total(avistamientos, estado):
     total_duracion = 0
     
+<<<<<<< HEAD
     # Recorremos todos los registros
     for avistamiento in registros:
         if avistamiento.estado.lower() == estado.lower():  # Comparación insensible a mayúsculas
             total_duracion += avistamiento.duracion
+=======
+    for r in avistamientos:
+        # comprobar si el estado del registro coincide con el estado proporcionado
+        if r[2].upper() == estado.upper():  # comparar sin importar mayusc
+            total_duracion += r[4]  # sumar la duracion (índice 4 en la tupla registro)
+>>>>>>> d4c7ceee02a8e7675a93e7cf9993dbe857c44926
     
     return total_duracion
 
