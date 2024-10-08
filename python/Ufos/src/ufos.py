@@ -4,33 +4,7 @@ from math import sqrt
 from collections import namedtuple, Counter, defaultdict
 import calendar
 
-##creacion de una tupla con nombre para los avistamientos
-Avistamiento = namedtuple('Avistamiento',
-                          'fechahora, cuidad, estado, forma, duracion, comentarios, latitud, longitud')
-
-
-# def lee_avistamientos(fichero):
-#     res = []
-#     with open (fichero, encoding='utf-8') as f:
-#         lector = csv.reader(f)
-#         next(lector)
-#         for x in lector:
-#             fecha_hora= x[0]
-#             fechahora = datetime.strptime(fecha_hora, "23/04/22 13:34")
-#             ciudad = x[1]
-#             estado = x[2]
-#             forma = x[3]
-#             duracion = int (x[4])
-#             comentarios = x[5]
-#             latitud = float (x[6])
-#             longitud = float (x[7])
-#             tupla = Avistamiento(fechahora, ciudad, estado, forma, duracion, comentarios, latitud, longitud)
-#             res.append(tupla)
-#         return res
-
-
-## funcon de lectura que crea una lista de avistamientos 
-# ejercicio 1
+# Clase Avistamiento con sus respectivos atributos
 class Avistamiento:
     def __init__(self, fechahora, ciudad, estado, forma, duracion, comentarios, latitud, longitud):
         self.fechahora = fechahora
@@ -42,32 +16,23 @@ class Avistamiento:
         self.latitud = latitud
         self.longitud = longitud
 
-    def __repr__(self):
-        return (f"Avistamiento(fechahora={self.fechahora}, ciudad='{self.ciudad}', "
-                f"estado='{self.estado}', forma='{self.forma}', duracion={self.duracion}, "
-                f"comentarios='{self.comentarios}', latitud={self.latitud}, longitud={self.longitud})")
-
+# Función para leer avistamientos desde un archivo CSV
 def lee_avistamientos(fichero):
     avistamientos = []
     
     with open(fichero, mode='r', encoding='utf-8') as archivo:
         lector_csv = csv.reader(archivo)
-        
-        # Saltar la cabecera si existe
-        next(lector_csv)
+        next(lector_csv)  # Saltar la cabecera si existe
         
         for fila in lector_csv:
-            # Imprimir la fila para verificar su contenido
-            print(fila)  # Debugging: esto te permitirá ver si la fila tiene todos los elementos esperados
-            
-            # Verificar que la fila tiene suficientes columnas
-            if len(fila) < 8:
+            print(fila)  # Debug: Verificar el contenido de cada fila
+            if len(fila) < 8:  # Verificar que la fila tiene suficientes columnas
                 print(f"Fila incompleta: {fila}")
-                continue  # Saltar filas incompletas
+                continue
             
             try:
-                # Descomponemos la fila en las variables correspondientes
-                fechahora = datetime.strptime(fila[0], '%d/%m/%Y %H:%M')  # Cambio en el formato de fecha
+                # Ajustar el formato de fecha a 'mes/día/año'
+                fechahora = datetime.strptime(fila[0], '%m/%d/%Y %H:%M')
                 ciudad = fila[1]
                 estado = fila[2]
                 forma = fila[3]
@@ -76,29 +41,40 @@ def lee_avistamientos(fichero):
                 latitud = float(fila[6])
                 longitud = float(fila[7])
                 
-                # Creamos una instancia de Avistamiento
+                # Crear una instancia de Avistamiento
                 avistamiento = Avistamiento(fechahora, ciudad, estado, forma, duracion, comentarios, latitud, longitud)
                 avistamientos.append(avistamiento)
             except ValueError as e:
                 print(f"Error al procesar fila: {fila}, Error: {e}")
     
-    # Ordenamos la lista de avistamientos por fecha y hora
+    # Ordenar los avistamientos por fecha y hora
     avistamientos.sort(key=lambda x: x.fechahora)
     
     return avistamientos
 
-# ejercicio 2
-def duracion_total(avistamientos, estado):
-    total_duracion = 0
-    
-    # Recorremos todos los registros
+# Ejercicio 2: Función que calcula la duración total de avistamientos en un estado dado
+def duracion_total(registros, estado):
+    duracion = 0
     for avistamiento in registros:
-        if avistamiento.estado.lower() == estado.lower():  # Comparación insensible a mayúsculas
-            total_duracion += avistamiento.duracion
-    
-    return total_duracion
+        if avistamiento.estado.lower() == estado.lower():
+            duracion += avistamiento.duracion
+    return duracion
 
-#ejercicio 3
+# Prueba de la función duracion_total con registros corregidos
+
+
+registros = [
+    Avistamiento(datetime(2024, 1, 1, 0, 0), 'Nueva York', 'activo', 'ovni', 10, 'sin comentarios', 40.7128, -74.0060),
+    Avistamiento(datetime(2024, 1, 2, 0, 0), 'Los Ángeles', 'inactivo', 'platillo', 5, 'sin comentarios', 34.0522, -118.2437)
+]
+
+
+# Llamar a la función duracion_total
+duracion_in = duracion_total(registros, 'activo')
+print(f'Duración total de avistamientos "activo": {duracion_in}')
+
+
+# Ejercicio 3: Función que encuentra el comentario más largo de un avistamiento en un año determinado que contenga una palabra específica
 def comentario_mas_largo(registros, anyo, palabra):
     max_avistamiento = None
     max_longitud_comentario = 0
@@ -117,19 +93,19 @@ def comentario_mas_largo(registros, anyo, palabra):
     
     return max_avistamiento
 
-## ejercicio 4
+
+# Ejercicio 4: Función que indexa las formas de avistamientos por mes
 def indexa_formas_por_mes(registros):
     formas_por_mes = defaultdict(set)
     
     for registro in registros:
-        # Obtener el nombre del mes
-        mes_nombre = calendar.month_name[registro.fechahora.month]
-        # Añadir la forma del avistamiento al conjunto correspondiente al mes
-        formas_por_mes[mes_nombre].add(registro.forma)
+        mes_nombre = calendar.month_name[registro.fechahora.month]  # Obtener el nombre del mes
+        formas_por_mes[mes_nombre].add(registro.forma)  # Añadir la forma del avistamiento al mes correspondiente
     
     return dict(formas_por_mes)
 
-##ejercicio 5
+
+# Ejercicio 5: Función que filtra avistamientos por un rango de fechas
 def avistamientos_fechas(registros, fecha_inicial=None, fecha_final=None):
     if fecha_inicial is None and fecha_final is None:
         registros_filtrados = registros
@@ -146,13 +122,14 @@ def avistamientos_fechas(registros, fecha_inicial=None, fecha_final=None):
     return registros_ordenados
 
 
-#ejercicio 6
+# Ejercicio 6: Función que encuentra la hora con más avistamientos
 def hora_mas_avistamientos(registros):
     horas = [registro.fechahora.hour for registro in registros]
     contador_horas = Counter(horas)
     return contador_horas.most_common(1)[0][0]
 
-# ejercico 7
+
+# Ejercicio 7: Función que devuelve un diccionario con la longitud media de los comentarios por estado
 def dicc_estado_longitud_media_comentario(registros):
     longitudes_por_estado = defaultdict(list)
     

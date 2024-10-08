@@ -58,11 +58,9 @@ formas_por_mes = indexa_formas_por_mes(registros)
 print("Formas de avistamientos por mes:")
 print(formas_por_mes)
 
-
-
-
-
-
+# Calcular la duración total de avistamientos del tipo "in"
+duracion_in = duracion_total(registros, 'in')
+print(f'Duración total de avistamientos "in": {duracion_in}')
 
 #####################################################################################################
 
