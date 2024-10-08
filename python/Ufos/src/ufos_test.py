@@ -1,27 +1,62 @@
 from ufos import *
 
 # Test de la función lee_avistamientos
-avistamientos  = lee_avistamientos('C:\\Users\\alvaro\\proyectos\\dam-sge\\python\\Ufos\\data\\ovnis.csv')
+resultados = lee_avistamientos('C:/Users/alvaro/proyectos/dam-sge/python/Ufos/data/ovnis.csv')
+print(resultados)
+
+
 
 #Test de la función duracion_total
-total_duracion_estado = duracion_total(avistamientos, 'CA')  # ej:California
-print(f'Duración total de avistamientos en CA: {total_duracion_estado} segundos')
+registros = lee_avistamientos('C:/Users/alvaro/proyectos/dam-sge/python/Ufos/data/ovnis.csv')
+duracion_in = duracion_total(registros, 'in')
+duracion_nm = duracion_total(registros, 'nm')
+duracion_pa = duracion_total(registros, 'pa')
+duracion_wa = duracion_total(registros, 'wa')
 
-    
+print(f"Duración total de los avistamientos en in: {duracion_in} segundos.")
+print(f"Duración total de los avistamientos en nm: {duracion_nm} segundos.")
+print(f"Duración total de los avistamientos en pa: {duracion_pa} segundos.")
+print(f"Duración total de los avistamientos en wa: {duracion_wa} segundos.")
+
+
 # Test de la función comentario_mas_largo
-avistamiento_largo = comentario_mas_largo(avistamientos, 2015, 'ufo')
-if avistamiento_largo:
-    print(f'El avistamiento con el comentario más largo de 2015 incluyendo la palabra "ufo" es:\n{avistamiento_largo}')
-else:
-    print('No se encontraron avistamientos que cumplan con los criterios.')
+# Ejemplo para el año 2015 y la palabra 'ufo'
+avistamiento_comentario_largo = comentario_mas_largo(registros, 2015, 'ufo')
 
+if avistamiento_comentario_largo:
+    print(f"El avistamiento con el comentario más largo de 2015 incluyendo la palabra 'ufo' es:\n{avistamiento_comentario_largo}")
+else:
+    print("No se encontraron avistamientos que cumplan con los criterios.")
 
 
 # Test de la función avistamientos_fechas
+from datetime import datetime
 
+fecha_inicial = datetime(2005, 5, 1)
+fecha_final = datetime(2005, 6, 1)
+
+avistamientos_en_rango = avistamientos_fechas(registros, fecha_inicial, fecha_final)
+print("Avistamientos entre el 1 de mayo de 2005 y el 1 de junio de 2005:")
+for avistamiento in avistamientos_en_rango:
+    print(avistamiento)
 
 
 # Test de la función hora_mas_avistamientos
+hora_mas_avistamientos_result = hora_mas_avistamientos(registros)
+print(f"Hora en la que se han observado más avistamientos: {hora_mas_avistamientos_result}")
+
+
+#test de dicc_estado_longitud_media_comentario:
+longitud_media_comentarios = dicc_estado_longitud_media_comentario(registros)
+print("Longitud media de comentarios por estado:")
+print(longitud_media_comentarios)
+
+
+#test de indexa_formas_por_mes:
+
+formas_por_mes = indexa_formas_por_mes(registros)
+print("Formas de avistamientos por mes:")
+print(formas_por_mes)
 
 
 
@@ -29,8 +64,7 @@ else:
 
 
 
-
-
+#####################################################################################################
 
 # # Test de la función formas_estados
 #  conjunto_estados = {'in', 'nm', 'pa', 'wa'}
