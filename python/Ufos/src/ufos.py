@@ -52,7 +52,7 @@ def lee_avistamientos(fichero):
     
     return avistamientos
 
-# Ejercicio 2: Función que calcula la duración total de avistamientos en un estado dado
+# funcion que calcula la duración total de avistamientos en un estado dado
 def duracion_total(registros, estado):
     duracion = 0
     for avistamiento in registros:
@@ -60,21 +60,19 @@ def duracion_total(registros, estado):
             duracion += avistamiento.duracion
     return duracion
 
-# Prueba de la función duracion_total
-
-
+# prueba de la función duracion_total
 registros = [
     Avistamiento(datetime(2024, 1, 1, 0, 0), 'Nueva York', 'activo', 'ovni', 10, 'sin comentarios', 40.7128, -74.0060),
     Avistamiento(datetime(2024, 1, 2, 0, 0), 'Los Ángeles', 'inactivo', 'platillo', 5, 'sin comentarios', 34.0522, -118.2437)
 ]
 
 
-# Llamar a la función duracion_total
+# llamar a la funcion duracion_total
 duracion_in = duracion_total(registros, 'activo')
 print(f'Duración total de avistamientos "activo": {duracion_in}')
 
 
-# Ejercicio 3: Función que encuentra el comentario más largo de un avistamiento en un año determinado que contenga una palabra específica
+# funcion que encuentra el comentario más largo de un avistamiento en un año determinado que contenga una palabra específica
 def comentario_mas_largo(registros, anyo, palabra):
     max_avistamiento = None
     max_longitud_comentario = 0
@@ -94,18 +92,18 @@ def comentario_mas_largo(registros, anyo, palabra):
     return max_avistamiento
 
 
-# Ejercicio 4: Función que indexa las formas de avistamientos por mes
+# funcion que indexa las formas de avistamientos por mes
 def indexa_formas_por_mes(registros):
     formas_por_mes = defaultdict(set)
     
     for registro in registros:
-        mes_nombre = calendar.month_name[registro.fechahora.month]  # Obtener el nombre del mes
-        formas_por_mes[mes_nombre].add(registro.forma)  # Añadir la forma del avistamiento al mes correspondiente
+        mes_nombre = calendar.month_name[registro.fechahora.month]  # para obtener el nombre del mes
+        formas_por_mes[mes_nombre].add(registro.forma)  # añadir la forma del avistamiento al mes correspondiente
     
     return dict(formas_por_mes)
 
 
-# Ejercicio 5: Función que filtra avistamientos por un rango de fechas
+# funcion que filtra avistamientos por un rango de fechas
 def avistamientos_fechas(registros, fecha_inicial=None, fecha_final=None):
     if fecha_inicial is None and fecha_final is None:
         registros_filtrados = registros
@@ -116,28 +114,28 @@ def avistamientos_fechas(registros, fecha_inicial=None, fecha_final=None):
     else:
         registros_filtrados = [r for r in registros if fecha_inicial <= r.fechahora <= fecha_final]
     
-    # Ordenar los registros por fecha de forma descendente
+    # Ordenar por fecha de forma descendente
     registros_ordenados = sorted(registros_filtrados, key=lambda r: r.fechahora, reverse=True)
     
     return registros_ordenados
 
 
-# Ejercicio 6: Función que encuentra la hora con más avistamientos
+# funcion que encuentra la hora con más avistamientos
 def hora_mas_avistamientos(registros):
     horas = [registro.fechahora.hour for registro in registros]
     contador_horas = Counter(horas)
     return contador_horas.most_common(1)[0][0]
 
 
-# Ejercicio 7: Función que devuelve un diccionario con la longitud media de los comentarios por estado
+# funcion que devuelve un diccionario con la longitud media de los comentarios por estado
 def dicc_estado_longitud_media_comentario(registros):
     longitudes_por_estado = defaultdict(list)
     
-    # Recolectar las longitudes de los comentarios por estado
+    # longitd de los comentarios por estado
     for registro in registros:
         longitudes_por_estado[registro.estado].append(len(registro.comentarios))
     
-    # Calcular la media de longitud por estado
+    # media de longitud por estado
     longitud_media_por_estado = {estado: sum(longitudes)/len(longitudes) 
                                  for estado, longitudes in longitudes_por_estado.items()}
     
