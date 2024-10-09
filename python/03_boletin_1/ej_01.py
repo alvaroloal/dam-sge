@@ -2,7 +2,7 @@ def carga_palabras():
     """Carga palabras clave desde un archivo y devuelve una lista de ellas."""
     palabras = []
     try:
-        with open('palabras.txt', 'r', encoding='utf-8') as archivo:
+        with open('C:/Users/alvaro/proyectos/dam-sge/python/03_boletin_1/palabras.txt', 'r', encoding='utf-8') as archivo:
             for linea in archivo:
                 palabras.append(linea.strip())
     except FileNotFoundError:
@@ -43,6 +43,8 @@ def main():
             break
         else:
             print("Opción no válida. Por favor, selecciona otra.")
+            
+
 
 if __name__ == "__main__":
     main()
