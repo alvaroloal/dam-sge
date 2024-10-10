@@ -17,7 +17,7 @@ def mostrar_palabras(palabras):
     for i in range(0, len(palabras), 20):
         print("\n".join(palabras[i:i+20]))  # 20 palabras
         if i + 20 < len(palabras):
-            input("Presiona Enter para ver más...")
+            input("Presiona enter para ver más...")
 
 def menu():
     palabras = []
