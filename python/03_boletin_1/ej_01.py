@@ -1,24 +1,25 @@
+##importa palabras y las muestra
 def carga_palabras():
-    """Carga palabras clave desde un archivo y devuelve una lista de ellas."""
-    palabras = []
     try:
-        with open('C:/Users/alvaro/proyectos/dam-sge/python/03_boletin_1/palabras.txt', 'r', encoding='utf-8') as archivo:
-            for linea in archivo:
-                palabras.append(linea.strip())
+        with open("palabras.txt", "r", encoding="utf-8") as archivo:
+            # quitar espacios en blanco
+            palabras = [linea.strip() for linea in archivo.readlines()]
+        return palabras
     except FileNotFoundError:
-        print("El archivo 'palabras.txt' no se encontró.")
-    return palabras
+        print("El archivo palabras.txt no se encuentra en el directorio.")
+        return []
 
 def mostrar_palabras(palabras):
-    """Muestra las palabras clave de 20 en 20."""
+    if not palabras:
+        print("No hay palabras para mostrar.")
+        return
+    
     for i in range(0, len(palabras), 20):
-        # Muestra un grupo de 20 palabras
-        for palabra in palabras[i:i + 20]:
-            print(palabra)
-        # Espera a que el usuario presione enter para continuar
-        input("Presiona Enter para ver más palabras...")
+        print("\n".join(palabras[i:i+20]))  # 20 palabras
+        if i + 20 < len(palabras):
+            input("Presiona Enter para ver más...")
 
-def main():
+def menu():
     palabras = []
     
     while True:
@@ -27,24 +28,22 @@ def main():
         print("[2] – Mostrar palabras clave")
         print("[0] – Salir")
         
-        opcion = input("Selecciona una opción: ")
+        opcion = input("Elige una opción: ")
         
-        if opcion == '1':
+        if opcion == "1":
             palabras = carga_palabras()
-            if palabras:
-                print(f"{len(palabras)} palabras clave cargadas.")
-        elif opcion == '2':
-            if palabras:
-                mostrar_palabras(palabras)
-            else:
-                print("No hay palabras clave cargadas. Por favor, importa primero.")
-        elif opcion == '0':
+            print(f"Se han importado {len(palabras)} palabras clave.")
+        
+        elif opcion == "2":
+            mostrar_palabras(palabras)
+        
+        elif opcion == "0":
             print("Saliendo del programa...")
             break
+        
         else:
-            print("Opción no válida. Por favor, selecciona otra.")
-            
+            print("Opción no válida, intenta de nuevo.")
 
 
 if __name__ == "__main__":
-    main()
+    menu()
