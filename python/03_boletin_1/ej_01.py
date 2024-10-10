@@ -1,13 +1,15 @@
 ##importa palabras y las muestra
 def carga_palabras():
+    palabras=[]
     try:
-        with open("palabras.txt", "r", encoding="utf-8") as archivo:
-            # quitar espacios en blanco
-            palabras = [linea.strip() for linea in archivo.readlines()]
-        return palabras
+        ## cargo el fichero en memoria
+        ## lo cargo en el identificador archivo
+        
+        with open("C:/Users/alvaro/proyectos/dam-sge/python/03_boletin_1/palabras.txt", "r", encoding="utf-8") as archivo:
+            palabras=archivo.readlines()
     except FileNotFoundError:
         print("El archivo palabras.txt no se encuentra en el directorio.")
-        return []
+    return palabras
 
 def mostrar_palabras(palabras):
     if not palabras:

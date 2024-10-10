@@ -2,7 +2,3 @@ Python
 Kubernetes
 Programación Orientada a Objetos
 Principios Solid
-
-
-
-
