@@ -5,10 +5,10 @@ def carga_palabras():
         ## cargo el fichero en memoria
         ## lo cargo en el identificador archivo
         
-        with open("C:/Users/alvaro/proyectos/dam-sge/python/03_boletin_1/palabras.txt", "r", encoding="utf-8") as archivo:
+        with open("C:/Users/lorente.alalv24_tria/Desktop/dam-sge/python/03_boletin_1/palabras.txt", "r", encoding="utf-8") as archivo:
             palabras=archivo.readlines()
     except FileNotFoundError:
-        print("El archivo palabras.txt no se encuentra en el directorio.")
+        print("El archivo palabras.txt no se encuentra en el directorio. Verifica la ruta del archivo")
     return palabras
 
 def mostrar_palabras(palabras):

@@ -2,9 +2,9 @@
 def carga_palabras():
     try:
         palabras_frecuencia = {}
-        with open("palabras.txt", "r", encoding="utf-8") as archivo:
+        with open("C:/Users/lorente.alalv24_tria/Desktop/dam-sge/python/03_boletin_1/palabras.txt", "r", encoding="utf-8") as archivo:
             for linea in archivo:
-                palabra = linea.strip()  # quitar espacios
+                palabra = linea.strip()
                 if palabra in palabras_frecuencia:
                     palabras_frecuencia[palabra] += 1
                 else:
@@ -32,7 +32,7 @@ def menu():
     palabras_frecuencia = {}
     
     while True:
-        print("\nMenú de opciones:")
+        print("\nMenú de opciones ej2:")
         print("[1] – Importar palabras clave")
         print("[2] – Mostrar palabras clave")
         print("[0] – Salir")
