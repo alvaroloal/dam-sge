@@ -1,0 +1,7 @@
+##FROM nginx:alpine
+FROM httpd:2.4-alpine
+LABEL maintainer="alvaro"
+WORKDIR /app
+COPY ./FilmData/dist/film-data/browser/* /app/
+RUN mv ./* /usr/local/apache2/htdocs/
+

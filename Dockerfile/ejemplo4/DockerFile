@@ -1,0 +1,13 @@
+FROM node:20.10-alpine3.19 as builder
+RUN apk add git
+RUN /web
+RUN git clone https://github.com/alvaroloal/FilmData
+RUN npm install -g @angular/cli
+RUN npm install
+RUN ng build --configuration production --aot
+FROM nginx:alpine
+WORKDIR /web
+COPY --from=builder /web/dist/film-data/* .
+RUN mv ./* /usr/share/nginx/html/
+RUN ln -ls /usr/share/nginx/html/web 
+
