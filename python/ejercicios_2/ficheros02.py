@@ -2,7 +2,7 @@ import csv
 
 def leer_fichero():
     cotizaciones = []
-    with open("./ejercicios_2/cotizacion.csv", newline="", encoding="utf-8") as file:
+    with open("./cotizacion.csv", newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file, delimiter=';')
         for row in reader:
             if all(key in row for key in ["Nombre", "Final", "Máximo", "Mínimo", "Volumen", "Efectivo"]):
@@ -31,7 +31,7 @@ def cotizaciones_columnas(cotizaciones):
     return columnas
 
 def crear_fichero_cotizaciones_columnas(columnas):
-    with open("./ejercicios_2/cotizaciones_columnas.csv", "w", newline="", encoding="utf-8") as file:
+    with open("./cotizaciones_columnas.csv", "w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(["Columna", "Mínimo", "Máximo", "Media"])
         for key in columnas.keys():
