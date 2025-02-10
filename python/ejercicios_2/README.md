@@ -1,4 +1,4 @@
-## Ejemplo de ejecucion
+## Ejemplo de ejecución
 1. Muevete al directorio donde estan todos lo ficheros
 2. Ejecuta cualquier script: 
 ```powershell
