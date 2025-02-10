@@ -15,7 +15,7 @@ def leer_notas(fichero):
 def calcular_media(notas):
     return sum(notas.values()) / len(notas)
 
-def mostrar_alumnos_media(alumnos):
+def mostrar_media_alumnos(alumnos):
     for alumno in alumnos:
         media = calcular_media(alumno["notas"])
         print(f"{alumno['nombre']} {alumno['apellidos']} - Media: {media:.2f}")
@@ -63,7 +63,7 @@ def menu():
         opcion = input("Elige una opción: ")
 
         if opcion == "1":
-            mostrar_alumnos_media(alumnos)
+            mostrar_media_alumnos(alumnos)
         elif opcion == "2":
             curso = input("Introduce el curso: ")
             asignatura = input("Introduce la asignatura: ")
