@@ -52,7 +52,7 @@ def generar_fichero_curso(alumnos, curso):
     
 
 def menu():
-    alumnos = leer_notas("C:/Users/lorente.alalv24_tria/Desktop/dam-sge/Python/ejercicios_2/notas.csv")
+    alumnos = leer_notas("notas.csv")
     while True:
         print("\nMenú:")
         print("1. Mostrar listado de alumnos con nota media")
